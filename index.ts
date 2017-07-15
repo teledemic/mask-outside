@@ -42,8 +42,11 @@ http.listen(8080, function(){
   console.log('listening on *:8080');
 });
 
-io.on('connection', function(socket){
-  console.log('a user connected');
+io.on('connection', socket => {
+  console.log("Connection from: " + socket.handshake.address);
   socket.emit("sound", "ding_center");
+  socket.on("disconnect", () => {
+    console.log("Disconnected: " + socket.handshake.address)
+  });
 });
 
