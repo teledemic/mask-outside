@@ -1,10 +1,9 @@
-import { Server } from "ws";
 import { Launchpad } from "./launchpad";
+var app = require('express')();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
-const wss = new Server({ port: 8080 });
-const launchpad = new Launchpad(wss);
-
-console.log("Listening on port 8080");
+const launchpad = new Launchpad(io);
 
 launchpad.set(4, 1, 21);
 launchpad.listen(4, 1, "yes");
@@ -23,12 +22,17 @@ launchpad.set(7, 2, 57);
 launchpad.set(2, 3, 13);
 launchpad.set(7, 3, 13);
 
-wss.on("connection", (ws, req) => {
-  console.log("connection from " + req.connection.remoteAddress);
-  ws.on("message", message => {
-    console.log("received " + message);
-  });
-  ws.on("close", () => {
-    console.log("disconnected " + req.connection.remoteAddress);
-  });
+
+app.get('/', function(req, res){
+  res.send('<h1>Hello world</h1>');
 });
+
+http.listen(8080, function(){
+  console.log('listening on *:8080');
+});
+
+io.on('connection', function(socket){
+  console.log('a user connected');
+  socket.emit("sound", "ding");
+});
+

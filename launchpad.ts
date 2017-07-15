@@ -1,26 +1,20 @@
-import { Server } from "ws";
-
 const midi = require("midi");
 
 export class Launchpad {
   private input: any;
   private output: any;
-  private wss: Server;
+  private sockio: any;
   private listeners = {};
 
-  constructor(wss) {
+  constructor(sockio) {
     this.input = new midi.input();
     this.output = new midi.output();
-    this.wss = wss;
+    this.sockio = sockio;
     this.input.on("message", (deltaTime, message) => {
       if (message[0] === 144 && message[2] === 127) {
         if (this.listeners.hasOwnProperty(message[1])) {
           console.log(this.listeners[message[1]]);
-          this.wss.clients.forEach(client => {
-            if (client.readyState === 1) {
-              client.send(this.listeners[message[1]]);
-            }
-          });
+          sockio.emit("sound", this.listeners[message[1]]);
         }
       }
     });

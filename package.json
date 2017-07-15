@@ -19,7 +19,9 @@
   },
   "homepage": "https://github.com/teledemic/mask-outside#readme",
   "dependencies": {
+    "express": "^4.15.3",
     "midi": "^0.9.5",
+    "socket.io": "^2.0.3",
     "ws": "^3.0.0"
   },
   "devDependencies": {
