@@ -44,6 +44,6 @@ http.listen(8080, function(){
 
 io.on('connection', function(socket){
   console.log('a user connected');
-  socket.emit("sound", "ding_left");
+  socket.emit("sound", "ding_center");
 });
 
