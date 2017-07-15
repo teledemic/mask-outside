@@ -1,0 +1,31 @@
+{
+  "name": "mask-outside",
+  "version": "1.0.0",
+  "description": "Remote control the mask",
+  "main": "index.ts",
+  "scripts": {
+    "start": "ts-node --no-cache index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "tslint \"src/**/*.ts\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/teledemic/mask-outside.git"
+  },
+  "author": "Carl Irving",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/teledemic/mask-outside/issues"
+  },
+  "homepage": "https://github.com/teledemic/mask-outside#readme",
+  "dependencies": {
+    "midi": "^0.9.5",
+    "ws": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/ws": "^3.0.2",
+    "@types/node": "8.0.13",
+    "ts-node": "3.2.0",
+    "typescript": "2.4.1"
+  }
+}

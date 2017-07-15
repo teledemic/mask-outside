@@ -1,0 +1,5 @@
+{
+	"exec": "npm start",
+	"ignore": "node_modules",
+	"ext": "ts"
+}
