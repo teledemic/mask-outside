@@ -5,22 +5,33 @@ var io = require('socket.io')(http);
 
 const launchpad = new Launchpad(io);
 
-launchpad.set(4, 1, 21);
-launchpad.listen(4, 1, "yes");
-launchpad.set(5, 1, 5);
-launchpad.listen(5, 1, "no");
+launchpad.set(1, 1, 21);
+launchpad.listen(1, 1, "yes_left");
+launchpad.set(2, 1, 21);
+launchpad.listen(2, 1, "yes_center");
+launchpad.set(3, 1, 21);
+launchpad.listen(3, 1, "yes_right");
 
-launchpad.set(4, 2, 45);
-launchpad.listen(4, 2, "ding");
-launchpad.set(5, 2, 13);
-launchpad.listen(5, 2, "bell");
+launchpad.set(1, 2, 5);
+launchpad.listen(1, 2, "no_left");
+launchpad.set(2, 2, 5);
+launchpad.listen(2, 2, "no_center");
+launchpad.set(3, 2, 5);
+launchpad.listen(3, 2, "no_right");
 
-launchpad.set(2, 1, 45);
-launchpad.set(7, 1, 45);
-launchpad.set(2, 2, 57);
-launchpad.set(7, 2, 57);
-launchpad.set(2, 3, 13);
-launchpad.set(7, 3, 13);
+launchpad.set(1, 3, 45);
+launchpad.listen(1, 3, "bell_left");
+launchpad.set(2, 3, 45);
+launchpad.listen(2, 3, "bell_center");
+launchpad.set(3, 3, 45);
+launchpad.listen(3, 3, "bell_right");
+
+launchpad.set(1, 4, 57);
+launchpad.listen(1, 4, "ding_left");
+launchpad.set(2, 4, 57);
+launchpad.listen(2, 4, "ding_center");
+launchpad.set(3, 4, 57);
+launchpad.listen(3, 4, "ding_right");
 
 
 app.get('/', function(req, res){
@@ -33,6 +44,6 @@ http.listen(8080, function(){
 
 io.on('connection', function(socket){
   console.log('a user connected');
-  socket.emit("sound", "ding");
+  socket.emit("sound", "ding_left");
 });
 
